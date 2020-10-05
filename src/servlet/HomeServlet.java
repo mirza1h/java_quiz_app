@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import database.Initialize;
+
 @WebServlet(urlPatterns = { "/quiz/home" })
 public class HomeServlet extends HttpServlet {
 	public HomeServlet() {
