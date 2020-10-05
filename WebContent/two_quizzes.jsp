@@ -190,10 +190,24 @@
 
     <div class="background-sky hero"></div>
 
-    <div class="row">
-        <a href="/rwa-z2-mirza-hasanovic/quiz/admin/login" class="btn black-text btn-flat right navigation-button white-text">Log in</a>
-        <a href="/rwa-z2-mirza-hasanovic/" class="btn black-text btn-flat right navigation-button white-text">Home</a>
-    </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="<%=request.getContextPath()%>/">
+              <img src="../resources/quiz_icon.png" width="45" height="30" alt="">
+            </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="<%=request.getContextPath()%>/">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/quiz/admin/login">Login</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
 
     <input type="hidden" value="<%= quiz1.getId() %>" id="quizId1">
         

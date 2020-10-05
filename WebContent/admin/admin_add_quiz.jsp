@@ -55,7 +55,7 @@
 </head>
 
 <body>
-	<a href="/rwa-z2-mirza-hasanovic/quiz/admin/login?logout=true" class="btn white black-text btn-flat right log-out-button">Log out</a>
+	<a href="<%=request.getContextPath()%>/quiz/admin/login?logout=true" class="btn white black-text btn-flat right log-out-button">Log out</a>
 	<a href="all_users" class="btn white black-text btn-flat right log-out-button">All users</a>
 	<a href="add_user" class="btn white black-text btn-flat right log-out-button">Add user</a>
 	<a href="all_quizzes" class="btn white black-text btn-flat right log-out-button">All quizzes</a>
@@ -269,7 +269,7 @@
                 type: 'POST',    
                 data: {'quiz':JSON.stringify(quiz)},
                 success: function(result) {
-                     window.location.href = "/rwa-z2-mirza-hasanovic/admin/all_quizzes";
+                     window.location.href = "<%=request.getContextPath()%>/admin/all_quizzes";
                 }
             });
 

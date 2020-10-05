@@ -22,7 +22,7 @@
       <div class="container" id="quiz">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/rwa-z2-mirza-hasanovic/">
+            <a class="navbar-brand" href="<%=request.getContextPath()%>/">
               <img src="../resources/quiz_icon.png" width="45" height="30" alt="">
             </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,10 +31,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item active">
-                <a class="nav-link" href="/rwa-z2-mirza-hasanovic/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/rwa-z2-mirza-hasanovic/quiz/admin/login">Login</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/quiz/admin/login">Login</a>
               </li>
             </ul>
           </div>

@@ -33,7 +33,7 @@ public class AdminLoginServlet extends HttpServlet {
 			request.getSession().invalidate();
 		}
 
-		request.getRequestDispatcher("/login.html").forward(request, response);
+		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class AdminLoginServlet extends HttpServlet {
 		}
 
 		request.setAttribute("messages", messages);
-		request.getRequestDispatcher("/login.html").forward(request, response);
+		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
 
 }
