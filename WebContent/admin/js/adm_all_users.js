@@ -1,4 +1,4 @@
-function deleteUser(userName){
+function deleteUser(username){
     $.ajax({
         url: 'all_users',  
         type: 'POST',    
@@ -7,5 +7,4 @@ function deleteUser(userName){
             $(row).remove();
         }
     });
-               
 }
