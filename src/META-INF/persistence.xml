@@ -6,10 +6,10 @@
 	<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
 		<class>domain.Player</class>
 		<class>domain.Quiz</class>
-		<class>domain.Result</class>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<!--<property name="javax.persistence.jdbc.url" value="jdbc:derby:quizDB;create=true" />  -->
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby:C:\Users\Ismet\MyDB;create=true" />
 			<property name="javax.persistence.jdbc.user" value="" />
 			<property name="javax.persistence.jdbc.password" value="" />
