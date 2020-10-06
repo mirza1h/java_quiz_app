@@ -33,32 +33,16 @@ public class AdminAddUserServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String firstName = request.getParameter("first_name");
-		String lastName = request.getParameter("last_name");
+		
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String role = request.getParameter("role");
-		
-		if(firstName == null || lastName == null || username == null || password == null || role == null){
-			request.getRequestDispatcher("/admin/add_user.jsp").forward(request, response);
-			return;
-		}
-		
-		Role userRole;
-		
-		if(role.equals("admin")){
-			userRole = Role.ADMIN;
-		} else if (role.equals("editor")){
-			userRole = Role.EDITOR;
-		} else {
-			request.getRequestDispatcher("/admin/add_user.jsp").forward(request, response);
-			return;
-		}
 		
 		if(playerService.findByUsername(username) == null){
-			Player user = new Player(username, firstName, lastName, password, userRole);
+			Player user = new Player(username, firstName, lastName, password, Role.ADMIN);
 			playerService.create(user);
-			request.getRequestDispatcher("/admin/add_user.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/all_users.jsp").forward(request, response);
 			return;
 		}
 			

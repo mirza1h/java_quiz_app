@@ -55,7 +55,7 @@ public class AdminLoginServlet extends HttpServlet {
 
 		if (messages.isEmpty()) {
 
-			Player player = playerService.authenticate(username, password);
+			Player player = playerService.verify(username, password);
 
 			if (player != null) {
 				Cookie usernameCookie = new Cookie("username", player.getUsername());

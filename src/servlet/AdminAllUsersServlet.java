@@ -7,15 +7,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/quiz/two_quizzes" })
-public class TwoQuizzesServlet extends HttpServlet {
-	public TwoQuizzesServlet() {
+@WebServlet(urlPatterns = { "/admin/all_users" })
+public class AdminAllUsersServlet extends HttpServlet {
+	public AdminAllUsersServlet() {
 		super();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/two_quizzes.jsp").forward(request, response);
-	}	
+		request.getRequestDispatcher("/admin/all_users.jsp").forward(request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+			
+	}
+	
+	
+	
 }

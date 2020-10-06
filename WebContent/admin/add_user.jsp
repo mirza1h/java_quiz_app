@@ -73,11 +73,6 @@
               <label for="password" name="password">Password</label>
               <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
-            <label for="role">Role</label>
-            <select name="role" class="form-control" id="role" required>
-              <option value="admin">Admin</option>
-              <option value="editor">Editor</option>
-            </select>
             <button id="idAddUser" class="btn btn-primary">Save</button>
           </form>
         </div>

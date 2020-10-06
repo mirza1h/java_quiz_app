@@ -96,7 +96,7 @@
 
             <h4 id="questions-h4">Questions</h4>
             <i class="material-icons left">info</i>
-            <span>You can change the order of questions by drag and drop</span>
+            <span>Drag and drop to change order</span>
             <ul id="questions">
                 <li class="questions-list-item">
                     <div class="divider questions-divider"></div>
@@ -200,12 +200,6 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-
-    <!-- Material dialog-->
-    <script src="material-dialog/material-dialog.min.js" type="text/javascript"></script>
-
-
 
     <script>
         $(document).ready(function () {

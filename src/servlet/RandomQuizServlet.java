@@ -20,7 +20,7 @@ public class RandomQuizServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Quiz randomQuiz = new QuizService(new QuizDao()).findRandom();
+		Quiz randomQuiz = new QuizService(new QuizDao()).getRandom();
 		request.getRequestDispatcher("/single_quiz.jsp?quiz-id=" + randomQuiz.getId()).forward(request, response);
 	}
 

@@ -1,10 +1,15 @@
 function deleteUser(username){
     $.ajax({
-        url: 'all_users',  
+        url: 'delete_user',  
         type: 'POST',    
-        data: {'username':username, 'method': 'delete'},
-        success: function(result) {
-            $(row).remove();
+        data: {
+        	'username':username
+        },
+        success: function() {
+            document.getElementById(username).remove();
+        },
+        error: function(error) {
+        	console.log(error);
         }
     });
 }

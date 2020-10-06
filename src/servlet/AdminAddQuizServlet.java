@@ -31,21 +31,20 @@ public class AdminAddQuizServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String quiz = request.getParameter("quiz");
 		Gson gson = new Gson();
-		Quiz q = gson.fromJson(quiz, Quiz.class);
-		for(int i=0; i<q.getQuestions().size(); i++){
-			for(int j=0; j<q.getQuestions().get(i).getAnswers().size(); j++) {
-				if(q.getQuestions().get(i).getAnswers().get(j).getText().equals("")) {
-					q.getQuestions().get(i).getAnswers().remove(j);
+		Quiz currentQuiz = gson.fromJson(request.getParameter("quiz"), Quiz.class);
+		for(int i=0; i<currentQuiz.getQuestions().size(); i++){
+			for(int j=0; j<currentQuiz.getQuestions().get(i).getAnswers().size(); j++) {
+				if(currentQuiz.getQuestions().get(i).getAnswers().get(j).getText().equals("")) {
+					currentQuiz.getQuestions().get(i).getAnswers().remove(j);
 					j--;
 				}
 			}
 		}
 		
-		q.setCreatedBy(((Player)request.getSession().getAttribute("user")));
+		currentQuiz.setCreatedBy(((Player)request.getSession().getAttribute("user")));
 		QuizService quizService = new QuizService(new QuizDao());
-		quizService.create(q);
+		quizService.create(currentQuiz);
 	}
 	
 }

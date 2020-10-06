@@ -15,23 +15,15 @@ public class QuizService {
 	}
 
 	public void create(Quiz quiz) {
-		quizDao.save(quiz);
+		quizDao.create(quiz);
 	}
 
 	public List<Quiz> findAll() {
-		return quizDao.findAll();
+		return quizDao.getAll();
 	}
 	
-	public List<Quiz> findByTitleOrDescription(String searchParam) {
-		return quizDao.findByTitleAndDescription(searchParam);
-	}
-	
-	public List<Quiz> findAllActive() {
-		return quizDao.findAllActive();
-	}
-
-	public List<Quiz> findByUser(String username) {
-		return quizDao.findByUser(username);
+	public List<Quiz> findActive() {
+		return quizDao.findActive();
 	}
 	
 	public Quiz findById(Integer id) {
@@ -42,13 +34,10 @@ public class QuizService {
 		return quizDao.findByTitle(title);
 	}
 	
-	public Quiz findRandom(){
+	public Quiz getRandom(){
 		List<Quiz> allQuizzes = findAll();
-		Random rand = new Random();
-		
-		int newRand = rand.nextInt(allQuizzes.size());
+		int newRand = new Random().nextInt(allQuizzes.size());
 		return allQuizzes.get(newRand);
-
 	}
 
 	public void removeByTitle(String title) {

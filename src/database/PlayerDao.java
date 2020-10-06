@@ -13,65 +13,40 @@ final public class PlayerDao extends AbstractDao {
 
 	}
 
-	public List<Player> findAll() {
+	public List<Player> getAll() {
 		EntityManager em = getEntityManager();
-		Query q = em.createQuery("SELECT u FROM Player u");
-		List<Player> resultList = q.getResultList();
+		Query query = em.createQuery("SELECT u FROM Player u");
+		List<Player> resultList = query.getResultList();
 		em.close();
 		return resultList;
 	}
 
 	public Player findByUsername(String username) {
 		EntityManager em = getEntityManager();
-		try {
-			Query q = em.createQuery("SELECT u FROM Player u WHERE u.username = :username").setParameter("username",
-					username);
-			Player user = (Player) q.getSingleResult();
-			return user;
-		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-		} finally {
-			if (em != null) {
-				em.close();
-			}
+		Query query = em.createQuery("SELECT u FROM Player u WHERE u.username = :username").setParameter("username", username);
+        List<Player> results = query.getResultList();
+        if (results.size() == 1) 
+        	return results.get(0);
+        else
+        	return null;
+	}
+	
+	public void removeByUsername(String username) {
+		EntityManager em = getEntityManager();
+		Player user = findByUsername(username);
+		if (user != null) {
+			em.getTransaction().begin();
+			Player mergedUser = em.merge(user);
+			em.remove(mergedUser);
+			em.getTransaction().commit();
 		}
-		return null;
 	}
 
-	public void save(Player user) {
+	public void create(Player user) {
 		EntityManager em = getEntityManager();
 		em.getTransaction().begin();
 		em.persist(user);
 		em.getTransaction().commit();
 		em.close();
-	}
-
-	public void update(Player user) {
-		Player currentUser = findByUsername(user.getUsername());
-		EntityManager em = getEntityManager();
-		em.getTransaction().begin();
-		currentUser.setFirstName(user.getFirstName());
-		em.getTransaction().commit();
-		em.close();
-		System.out.println(findByUsername(user.getUsername()).getFirstName());
-	}
-
-	public void removeByUsername(String username) {
-		EntityManager em = getEntityManager();
-		try {
-			Player userToRemove = findByUsername(username);
-			if (userToRemove != null) {
-				em.getTransaction().begin();
-				Player mergedUser = em.merge(userToRemove);
-				em.remove(mergedUser);
-				em.getTransaction().commit();
-			}
-		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
 	}
 }

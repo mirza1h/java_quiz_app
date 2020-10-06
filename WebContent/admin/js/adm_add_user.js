@@ -12,17 +12,15 @@ document.addEventListener("DOMContentLoaded", function () {
 		var lastName = $('#last_name').val();
 		var username = $('#username').val();
 		var password = $('#password').val();
-		var role = $('#role').val();
-	    var mode = "add";
 		        	
-	    if((firstName == "" || lastName=="" || username=="" || role==null || password=="")){
+	    if((firstName == "" || lastName=="" || username=="" || password=="")){
 	        alert("Fill out all fields!");
 	    }        	
 
 	    $.ajax({
-	        url: 'all_users',
+	        url: 'add_user',
 	        type: 'POST',
-	        data: {'username':username, 'method': mode, 'firstName':firstName,'lastName':lastName, 'password':password, 'role':role},
+	        data: {'username':username, 'firstName':firstName,'lastName':lastName, 'password':password},
 	        success: function(result) {
 	         	window.location.replace("all_users");
 	        }

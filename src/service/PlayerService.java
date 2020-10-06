@@ -2,9 +2,7 @@ package service;
 
 import java.util.List;
 
-import database.QuizDao;
 import database.PlayerDao;
-import domain.Quiz;
 import domain.Player;
 
 public class PlayerService {
@@ -17,18 +15,18 @@ public class PlayerService {
 
 	public void create(Player user) {
 		user.setPassword(user.getPassword());
-		playerDao.save(user);
+		playerDao.create(user);
 	}
 
-	public List<Player> findAll() {
-		return playerDao.findAll();
+	public List<Player> getAll() {
+		return playerDao.getAll();
 	}
 
 	public Player findByUsername(String username) {
 		return playerDao.findByUsername(username);
 	}
 
-	public Player authenticate(String username, String password) {
+	public Player verify(String username, String password) {
 		Player user = findByUsername(username);
 		if (user == null) {
 			return null;
