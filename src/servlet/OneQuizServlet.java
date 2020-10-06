@@ -32,7 +32,7 @@ public class OneQuizServlet extends HttpServlet {
 		Gson gson = new Gson();
 		QuizService quizService = new QuizService(new QuizDao());
 		
-		String quizId = request.getParameter("quizId");
+		String quizId = request.getReader().readLine();
 		Quiz quiz = quizService.findById(Integer.parseInt(quizId));
 		
 		response.setContentType("application/json");

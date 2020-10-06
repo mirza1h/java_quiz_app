@@ -13,7 +13,6 @@ public class Question implements Serializable {
 	public Question() {
 	}
 
-
 	public Question(String text, List<Answer> answers, int time, int points) {
 		super();
 		this.text = text;
@@ -21,9 +20,6 @@ public class Question implements Serializable {
 		this.time = time;
 		this.points = points;
 	}
-
-
-
 
 	public String getText() {
 		return text;
@@ -56,7 +52,4 @@ public class Question implements Serializable {
 	public void setPoints(int points) {
 		this.points = points;
 	}
-	
-	
-
 }

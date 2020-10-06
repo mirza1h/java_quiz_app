@@ -8,8 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	var nextQuestionBtn = document.getElementById("idNextQuestion");
 	var mainQuestionsDiv = document.getElementById("idMainQuestionsDiv");
 	var answersDiv = document.getElementById("idAnswersDiv");
-	var submitBtn = document.getElementById("idSubmitBtn");
 	var resultText = document.getElementById("idResultText");
+	var result = 0;
+	var answers = [];
 	var questions;
 	var currentQuestion = 0;
 	var currentTimer;
@@ -20,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		// Register 'click' callbacks for buttons
 		playQuizBtn.addEventListener("click", playQuiz);
 		nextQuestionBtn.addEventListener("click", nextQuestion);
-		submitBtn.addEventListener("click", submitResults);
 	}
 
 	function answerChecked(event) {
@@ -32,15 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	function playQuiz() {
 		document.getElementById('data').innerHTML = '';
 		var quizId = document.getElementById("idQuiz").value;
-
-		$.ajax({
-			url : 'single_quiz',
-			type : 'POST',
-			data : {
-				'quizId' : quizId
-			},
-			success : function(result) {
-				questions = result.questions;
+		var httpRequest = new XMLHttpRequest();
+		httpRequest.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				questions = JSON.parse(httpRequest.response).questions;
 
 				for (var i=0; i<questions.length; ++i) {
 					questions[i].timeLeft = questions[i].time;
@@ -48,19 +43,21 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 				goToQuestion(currentQuestion);
 			}
-		});
-
+		};
+		httpRequest.open("POST", "single_quiz", true);
+		httpRequest.send(quizId);
 	}
 
 	function goToQuestion(questionNumber) {
 		mainQuestionsDiv.style.display = "block";
 		var question = questions[questionNumber];
-		questionText.innerText = question.text;
+		questionText.innerText = question.text + "(" + question.points + "p)";
 		for (var i=0; i<question.answers.length; ++i) {
 			var answerDiv = questionAnswerDiv.cloneNode(true);
 			answerDiv.style.display = "block";
 			answerDiv.addEventListener("click", answerChecked);
 			answerDiv.children[1].innerText = question.answers[i].text;
+			answers.push(answerDiv.children[0]);
 			answersDiv.appendChild(answerDiv);
 		}
 		setUpTimer();
@@ -70,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		clearTimer();
 		getCheckedAnswers();
 		if (currentQuestion == questions.length - 1) {
-			goToResults();
+			printResults();
 		} else {
 			goToQuestion(++currentQuestion);
 		}
@@ -90,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					if (questions[currentQuestion].timeLeft <= 0) {
 						clearTimer();
 						for (var i = 0; i < questions[currentQuestion].answers.length; i++) {
-							$($('#wholeQuestion').children()[i + 1]).children()[0].checked = false;
+							answers[i].checked = false;
 						}
 					}
 
@@ -104,38 +101,29 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	function getCheckedAnswers() {
-
+		var foundCorrect = false;
+		var answersChecked = 0;
+		var answersCorrect = 0;
 		questions[currentQuestion].checkedAnswers = [];
 		for (var i = 0; i < questions[currentQuestion].answers.length; i++) {
 
-			if ($($('#wholeQuestion').children()[i + 1]).children()[0].checked) {
-				questions[currentQuestion].checkedAnswers.push(i + 1);
+			if (answers[i].checked) {
+				++answersChecked;
+				questions[currentQuestion].checkedAnswers.push(i);
+				if (questions[currentQuestion].answers[i].isCorrect){
+					++answersCorrect;
+					result += questions[currentQuestion].points;
+				}
 			}
 
 		}
+		if (answersChecked == 0 || answersChecked != answersCorrect) {
+			result -= questions[currentQuestion].points;
+		}
 	}
 
-	function goToResults() {
-		var quizId = document.getElementById("idQuiz").value;
 
-		var quizResults = {};
-		quizResults.questions = questions;
-
-		$.ajax({
-			url : 'quiz-results',
-			type : 'POST',
-			data : {
-				'quizId' : quizId,
-				'quizResults' : JSON.stringify(quizResults)
-			},
-			success : function(result) {
-				printResults(result);
-
-			}
-		});
-	}
-
-	function printResults(result) {
+	function printResults() {
 		mainQuestionsDiv.style.display = "none";
 		resultText.style.display = "block";
 		resultText.innerHTML = 'Your score is: ' + result + '.'

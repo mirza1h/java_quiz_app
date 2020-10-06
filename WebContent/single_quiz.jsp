@@ -17,13 +17,13 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/adm_all_quizzes.css" />
+    <link rel="stylesheet" href="../css/all_quizzes.css" />
 
 <style>
 .quiz-question {
@@ -90,15 +90,15 @@
 	
 	<div id="idMainQuestionsDiv" class="row transparent question-container" style="display:none">
 		<div class="container">
-			<div class="quiz-question transparent" id="wholeQuestion">
+			<div class="quiz-question transparent">
 				<div class="question-box">
 					<span id="idQuestionText" class="text"> </span>
 				</div>
 				
 				<div id="idAnswersDiv">
-					<div id="idQuestionAnswer" class="btn btn-info" style="display:none">
-						<input type="checkbox" class="input-dim prt-2"/>
-						<span class="text"> </span>
+					<div id="idQuestionAnswer" class="btn btn-primary" style="display:none">
+						<input id="idCheckbox" type="checkbox"/>
+						<label for="idCheckbox" class="text"> </label>
 					</div>
 				</div>
 
