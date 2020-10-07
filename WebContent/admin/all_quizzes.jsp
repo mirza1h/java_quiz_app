@@ -74,16 +74,17 @@
             	
             		String returnString = new String();
             	
-            		for (Quiz q : quizzes) {
+            		for (Quiz quiz: quizzes) {
+            			if (quiz.getTitle() != null) {
             %>
               <tr>
-                <th scope="row"><img src="<%=q.getImageUrl()%>" width="50px" /></th>
-                <td><%=q.getTitle()%></td>
-                <td><%=q.getCreatedBy()%></td>
-                <td><%=q.getQuestions().size()%></td>
-                <td><Button onClick="deleteQuiz('<%=q.getTitle()%>')" class="btn btn-danger">Delete</Button></td>
+                <th scope="row"><img src="<%=quiz.getImageUrl()%>" width="50px" /></th>
+                <td><%=quiz.getTitle()%></td>
+                <td><%=quiz.getCreatedBy()%></td>
+                <td><%=quiz.getQuestions().size()%></td>
+                <td><Button onClick="deleteQuiz('<%=quiz.getTitle()%>')" class="btn btn-danger">Delete</Button></td>
               </tr>
-            <% 
+            <% 		}
 				}
 			%>
             </tbody>

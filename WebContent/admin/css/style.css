@@ -15,3 +15,20 @@ td .btn {
     margin-bottom: 50px;
 }
 
+
+#questions-h4 {
+    margin: 70px 0 40px 0;
+}
+
+.questions-list-item {
+    margin: 50px 0px;
+}
+
+.questions-divider {
+    margin-bottom: 15px;
+}
+
+.questions-close-button {
+    cursor: pointer;
+}
+

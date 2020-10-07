@@ -1,5 +1,6 @@
 package servlet;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -31,16 +32,10 @@ public class AdminAddQuizServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Gson gson = new Gson();
-		Quiz currentQuiz = gson.fromJson(request.getParameter("quiz"), Quiz.class);
-		for(int i=0; i<currentQuiz.getQuestions().size(); i++){
-			for(int j=0; j<currentQuiz.getQuestions().get(i).getAnswers().size(); j++) {
-				if(currentQuiz.getQuestions().get(i).getAnswers().get(j).getText().equals("")) {
-					currentQuiz.getQuestions().get(i).getAnswers().remove(j);
-					j--;
-				}
-			}
-		}
+		BufferedReader reader = request.getReader();
+		String line = reader.readLine();
+		Quiz currentQuiz = new Gson().fromJson(line, Quiz.class);
+
 		Player user = (Player) request.getSession().getAttribute("user");
 		currentQuiz.setCreatedBy(user.getUsername());
 		QuizService quizService = new QuizService(new QuizDao());
