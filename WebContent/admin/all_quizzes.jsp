@@ -70,10 +70,7 @@
             <tbody>
             <%
             	QuizService quizService = new QuizService(new QuizDao());
-            		java.util.List<Quiz> quizzes = quizService.getAll();
-            	
-            		String returnString = new String();
-            	
+            		java.util.List<Quiz> quizzes = quizService.getAll();            	
             		for (Quiz quiz: quizzes) {
             			if (quiz.getTitle() != null) {
             %>
@@ -89,7 +86,7 @@
 			%>
             </tbody>
           </table>
-
+			   	<span id="pathSpan" style="display:none"><%=request.getContextPath()%></span>
         </div>
       </div>
     </div>

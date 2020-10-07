@@ -1,7 +1,8 @@
+<%@page import="roles.Role"%>
 <%@page import="service.QuizService"%>
 <%@page import="database.QuizDao"%>
 <%@page import="domain.Quiz"%>
-
+<%@page import="domain.Player"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!doctype html>
@@ -13,15 +14,12 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/all_quizzes.css" />
-
     <title>Quiz App</title>
   </head>
   <body>
     <div class="container-fluid">
       <div class="container" id="quiz">
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="<%=request.getContextPath()%>/">
               <img src="../resources/quiz_icon.png" width="45" height="30" alt="">
             </a>
@@ -40,30 +38,40 @@
           </div>
         </nav>
 
-        <h1 class="display-4">All quizzes1</h1>
+        <h1 class="display-4">All quizzes</h1>
         <hr/>
         <div class="container" align="left">
-	        <%
-	        	QuizService quizService = new QuizService(new QuizDao());
-	        		java.util.List<Quiz> quizzes;
-	        		if(request.getParameter("q") == null) {
-	        			quizzes = quizService.getAll();
-	        		} 
-	        		String returnString = new String();
-	        		
-	        		for(Quiz q : quizzes) {
-	        %>
-		          <div class="card" style="width: 168rem;">
-		            <img class="card-img-top" width="280px" src="<%=q.getImageUrl()%>" alt="Card image cap">
-		            <div class="card-body">
-		              <h5 class="card-title"><%=q.getTitle()%></h5>
-		              <p class="card-text"><%=q.getDescription()%></p>
-		              <Button onClick="play(<%=q.getId()%>)" class="btn btn-primary">Play</Button>
-		            </div>
-		          </div>
-	          <%
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Title</th>
+                <th scope="col">Creator</th>
+                <th scope="col">Questions</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <%
+            	QuizService quizService = new QuizService(new QuizDao());
+            		java.util.List<Quiz> quizzes = quizService.getAll();            	
+            		for (Quiz quiz: quizzes) {
+            			if (quiz.getTitle() != null) {
+            %>
+              <tr>
+                <th scope="row"><img src="<%=quiz.getImageUrl()%>" width="50px" /></th>
+                <td><%=quiz.getTitle()%></td>
+                <td><%=quiz.getCreatedBy()%></td>
+                <td><%=quiz.getQuestions().size()%></td>
+                <td><Button onClick="play(<%=quiz.getId()%>)" class="btn btn-primary">Play</Button></td>
+              </tr>
+            <% 		}
 				}
-	          %>
+			%>
+            </tbody>
+          </table>
+			   	<span id="pathSpan" style="display:none"><%=request.getContextPath()%></span>
         </div>
       </div>
     </div>
@@ -73,6 +81,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="../js/all_quizes.js"></script>
+    <script src="../js/all_quizzes.js"></script>
   </body>
 </html>

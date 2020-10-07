@@ -64,11 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getQuestionValues(question) {
         var currentQuestion = {};
-        var infoInputs = question.children[2].getElementsByTagName("input");
+        var infoInputs = question.children[1].getElementsByTagName("input");
         currentQuestion.text = infoInputs[0].value;
         currentQuestion.points = infoInputs[1].value;
         currentQuestion.time = infoInputs[2].value;
-        var answerInputs = question.children[3].getElementsByTagName("input");
+        var answerInputs = question.children[2].getElementsByTagName("input");
         currentQuestion.answers = [];
         for(var i = 0; i < answerInputs.length; ++i) {
             var answer = {};

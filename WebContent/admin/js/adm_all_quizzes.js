@@ -1,3 +1,4 @@
 function deleteQuiz(quizTitle) {
-	window.location.href = "<%=request.getContextPath()%>/admin/delete-quiz?quiz-title="+ quizTitle;
+	var pathSpan = document.getElementById("pathSpan");		
+	window.location.href = pathSpan.textContent + "/admin/delete-quiz?quiz-title="+ quizTitle;
 };
