@@ -21,7 +21,7 @@ public class RandomQuizServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		QuizService quizService = new QuizService(new QuizDao());
-		String quizId = request.getReader().readLine();
+		String quizId = request.getParameter("quiz-id");
 		Quiz quiz;
 		if(quizId != null)
 			quiz = quizService.findById(Integer.parseInt(quizId));

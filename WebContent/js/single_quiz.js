@@ -69,6 +69,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (currentQuestion == questions.length - 1) {
 			printResults();
 		} else {
+			answersDiv.innerHTML = '';
+			for (var i = 0; i < questions[currentQuestion].answers.length; i++) {
+				answers.pop();
+			}
 			goToQuestion(++currentQuestion);
 		}
 	}
@@ -78,18 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				function() {
 					var timer = document.getElementById("timer");
 
-					questions[currentQuestion].timeLeft = questions[currentQuestion].timeLeft
-							- interval;
-					timer.style.width = ((questions[currentQuestion].timeLeft / questions[currentQuestion].time) * 100)
-							.toString()
-							+ "%";
-
-					if (questions[currentQuestion].timeLeft <= 0) {
-						clearTimer();
-						for (var i = 0; i < questions[currentQuestion].answers.length; i++) {
-							answers[i].checked = false;
-						}
-					}
+					questions[currentQuestion].timeLeft = questions[currentQuestion].timeLeft - interval;
+					timer.style.width = ((questions[currentQuestion].timeLeft / questions[currentQuestion].time) * 100).toString() + "%";
 
 				}, interval * 1000);
 	}
@@ -101,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	function getCheckedAnswers() {
-		var foundCorrect = false;
 		var answersChecked = 0;
 		var answersCorrect = 0;
 		questions[currentQuestion].checkedAnswers = [];

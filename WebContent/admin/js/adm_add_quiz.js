@@ -6,14 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	var questionList = document.getElementById("idQuestionList");
 	var addQuestionBtn = document.getElementById("idAddQuestionBtn");
 	var removeBtn = document.getElementById("idRemoveBtn");
-	var questionListClone;
 
 	var init = function () {
 		// Register 'click' callbacks for buttons
 		submitBtn.addEventListener("click", submit);
 		addQuestionBtn.addEventListener("click", addNewQuestion);
 		removeBtn.addEventListener("click", removeQuestion);
-		questionListClone = questionList;
 	}
 	
     function removeQuestion(event) {
@@ -21,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 	
     function addNewQuestion() {
-    	var newQuestion = questionListClone.cloneNode(true);
-    	newQuestion.children[1].firstElementChild.addEventListener("click", removeQuestion);
+    	var newQuestion = questionList.cloneNode(true);
+    	newQuestion.children[0].firstElementChild.addEventListener("click", removeQuestion);
         document.getElementById("questions").append(newQuestion);
     }
 
@@ -74,8 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
             var answer = {};
             if(answerInputs[i].type == "text" && answerInputs[i].value != ''){
             	answer.text = answerInputs[i].value;
-                if(answerInputs[i+1].type == "checkbox")
-                	answer.checked = answerInputs[i+1].checked;
+                if(answerInputs[i-1].type == "checkbox")
+                	answer.isCorrect = answerInputs[i-1].checked;
                 currentQuestion.answers.push(answer);
             }
         }
