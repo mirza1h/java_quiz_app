@@ -87,13 +87,6 @@
                 </div>
             </div>
 
-            <p>
-                <label>
-                    <input type="checkbox" id="is_active_checkbox" />
-                    <span>Is active</span>
-                </label>
-            </p>
-
             <h4 id="questions-h4">Questions</h4>
             <i class="material-icons left">info</i>
             <span>Drag and drop to change order</span>
@@ -247,7 +240,6 @@
             quiz.title = $("#title").val();
             quiz.description = $("#description").val();
             quiz.imageUrl = $("#image_url").val();
-            quiz.active = $("#is_active_checkbox").is(":checked");
 
             quiz.questions = getQuestions();
 

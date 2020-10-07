@@ -1,16 +1,10 @@
 package domain;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import org.eclipse.persistence.annotations.PrivateOwned;
-
 import roles.Role;
 
 @Entity
@@ -18,28 +12,21 @@ public class Player {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(name = "username", unique = true)
+	@Column(unique = true)
 	private String username;
-	@Column(name = "first_name")
-	private String firstName;
-	@Column(name = "last_name")
-	private String lastName;
-	@Column(name = "password")
+	
 	private String password;
 
-	@Column(name = "role")
-	Role role;
+	private String firstName;
 
-	@OneToMany(mappedBy = "createdBy",cascade=CascadeType.PERSIST)
-	@PrivateOwned
-	private List<Quiz> quizes;
+	private String lastName;
+
+	Role role;
 
 	public Player() {
 
 	}
 	
-	
-
 	public Player(String username, String firstName, String lastName, String password, Role role) {
 		super();
 		this.username = username;
@@ -47,12 +34,6 @@ public class Player {
 		this.lastName = lastName;
 		this.password = password;
 		this.role = role;
-	}
-
-
-
-	public long getId() {
-		return id;
 	}
 
 	public String getUsername() {
@@ -93,14 +74,6 @@ public class Player {
 
 	public void setRole(Role role) {
 		this.role = role;
-	}
-
-	public List<Quiz> getQuizes() {
-		return quizes;
-	}
-
-	public void setQuizes(List<Quiz> quizes) {
-		this.quizes = quizes;
 	}
 
 }

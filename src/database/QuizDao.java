@@ -27,14 +27,6 @@ public class QuizDao extends AbstractDao {
         else
         	return null;
 	}
-	
-	public List<Quiz> findActive() {
-		EntityManager em = getEntityManager();
-		Query query = em.createQuery("SELECT q FROM Quiz q WHERE q.active = TRUE");
-		List<Quiz> resultList = query.getResultList();
-		em.close();
-		return resultList;
-	}
 
 	public Quiz findByTitle(String title) {
 		EntityManager em = getEntityManager();

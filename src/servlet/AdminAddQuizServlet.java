@@ -41,8 +41,8 @@ public class AdminAddQuizServlet extends HttpServlet {
 				}
 			}
 		}
-		
-		currentQuiz.setCreatedBy(((Player)request.getSession().getAttribute("user")));
+		Player user = (Player) request.getSession().getAttribute("user");
+		currentQuiz.setCreatedBy(user.getUsername());
 		QuizService quizService = new QuizService(new QuizDao());
 		quizService.create(currentQuiz);
 	}

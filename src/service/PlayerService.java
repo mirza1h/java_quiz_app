@@ -25,6 +25,10 @@ public class PlayerService {
 	public Player findByUsername(String username) {
 		return playerDao.findByUsername(username);
 	}
+	
+	public void removeByUsername(String username) {
+		playerDao.removeByUsername(username);
+	}
 
 	public Player verify(String username, String password) {
 		Player user = findByUsername(username);
@@ -37,9 +41,5 @@ public class PlayerService {
 			return user;
 		}
 		return null;
-	}
-
-	public void removeByUsername(String username) {
-		playerDao.removeByUsername(username);
 	}
 }

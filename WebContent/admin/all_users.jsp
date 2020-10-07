@@ -68,16 +68,18 @@
             <tbody>
             <%
             	PlayerService userService = new PlayerService(new PlayerDao());
-                          java.util.List<Player> users = userService.getAll();
-                          for(Player u:users) {
+                java.util.List<Player> users = userService.getAll();
+                  for(Player user:users) {
+                	  if(user.getUsername() != null){
             %>     
-              <tr id="<%=u.getUsername() %>">
-                <th scope="row"><%=u.getUsername() %></th>
-                <td><%=u.getFirstName() %></td>
-                <td><%=u.getLastName() %></td>
-                <td><Button onClick="deleteUser('<%=u.getUsername() %>')" class="btn btn-primary">Delete</Button></td>
+              <tr id="<%=user.getUsername() %>">
+                <th scope="row"><%=user.getUsername() %></th>
+                <td><%=user.getFirstName() %></td>
+                <td><%=user.getLastName() %></td>
+                <td><Button onClick="deleteUser('<%=user.getUsername() %>')" class="btn btn-primary">Delete</Button></td>
               </tr>
               <% 
+                   }
               	}
               %>
             </tbody>

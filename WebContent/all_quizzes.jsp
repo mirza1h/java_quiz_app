@@ -47,7 +47,7 @@
 	        	QuizService quizService = new QuizService(new QuizDao());
 	        		java.util.List<Quiz> quizzes;
 	        		if(request.getParameter("q") == null) {
-	        			quizzes = quizService.findActive();
+	        			quizzes = quizService.getAll();
 	        		} 
 	        		String returnString = new String();
 	        		

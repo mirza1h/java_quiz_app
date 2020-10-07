@@ -18,12 +18,14 @@ public class QuizService {
 		quizDao.create(quiz);
 	}
 
-	public List<Quiz> findAll() {
+	public List<Quiz> getAll() {
 		return quizDao.getAll();
 	}
 	
-	public List<Quiz> findActive() {
-		return quizDao.findActive();
+	public Quiz getRandom(){
+		List<Quiz> allQuizzes = getAll();
+		int newRand = new Random().nextInt(allQuizzes.size());
+		return allQuizzes.get(newRand);
 	}
 	
 	public Quiz findById(Integer id) {
@@ -34,12 +36,6 @@ public class QuizService {
 		return quizDao.findByTitle(title);
 	}
 	
-	public Quiz getRandom(){
-		List<Quiz> allQuizzes = findAll();
-		int newRand = new Random().nextInt(allQuizzes.size());
-		return allQuizzes.get(newRand);
-	}
-
 	public void removeByTitle(String title) {
 		quizDao.removeByTitle(title);
 	}

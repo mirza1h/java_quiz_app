@@ -69,17 +69,17 @@
             </thead>
             <tbody>
             <%
-	            QuizService quizService = new QuizService(new QuizDao());
-				java.util.List<Quiz> quizzes = quizService.findAll();
-	
-				String returnString = new String();
-	
-				for (Quiz q : quizzes) {
-			%>
+            	QuizService quizService = new QuizService(new QuizDao());
+            		java.util.List<Quiz> quizzes = quizService.getAll();
+            	
+            		String returnString = new String();
+            	
+            		for (Quiz q : quizzes) {
+            %>
               <tr>
                 <th scope="row"><img src="<%=q.getImageUrl()%>" width="50px" /></th>
                 <td><%=q.getTitle()%></td>
-                <td><%=q.getCreatedBy().getUsername()%></td>
+                <td><%=q.getCreatedBy()%></td>
                 <td><%=q.getQuestions().size()%></td>
                 <td><Button onClick="deleteQuiz('<%=q.getTitle()%>')" class="btn btn-danger">Delete</Button></td>
               </tr>

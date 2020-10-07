@@ -23,22 +23,6 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
     <link rel="stylesheet" href="../css/all_quizzes.css" />
-
-<style>
-.quiz-question {
-	background: rgb(255, 255, 255);
-	margin: 2em;
-}
-
-.question-box {
-	background: gray;
-	padding: 20px;
-	margin: 20px;
-	font-size: 150%;
-	border-radius: 4px;
-}
-
-</style>
 </head>
 <body>
 
@@ -117,10 +101,6 @@
 	<div id="idResultText" class="question-box" style="display:none">
 		<span class="text"> </span>
 	</div>
-	<!-- Compiled and minified JavaScript -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
 	<script type="text/javascript" src="../js/single_quiz.js"></script>
 </body>
 

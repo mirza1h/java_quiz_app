@@ -32,17 +32,15 @@ public class AdminLoginServlet extends HttpServlet {
 		if (request.getParameter("logout") != null) {
 			request.getSession().invalidate();
 		}
-
+		//Initialize.init();
 		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-
 		Map<String, String> messages = new HashMap<String, String>();
 
 		if (username == null || username.isEmpty()) {
@@ -54,9 +52,7 @@ public class AdminLoginServlet extends HttpServlet {
 		}
 
 		if (messages.isEmpty()) {
-
 			Player player = playerService.verify(username, password);
-
 			if (player != null) {
 				Cookie usernameCookie = new Cookie("username", player.getUsername());
 				usernameCookie.setMaxAge(2 * 24 * 60 * 60);
@@ -65,7 +61,6 @@ public class AdminLoginServlet extends HttpServlet {
 				roleCookie.setMaxAge(2 * 24 * 60 * 60);
 
 				request.getSession().setAttribute("user", player);
-
 				response.addCookie(usernameCookie);
 				response.addCookie(roleCookie);
 				response.sendRedirect(request.getContextPath() + "/admin/all_quizzes");

@@ -3,12 +3,11 @@ package domain;
 import java.io.Serializable;
 import java.util.List;
 public class Question implements Serializable {
-
-	private static final long serialVersionUID = 1710781582828487091L;
+	private static final long serialVersionUID = 1L;
 	private String text;
+	private int points;
 	private List<Answer> answers;
 	private int time;
-	private int points;
 	
 	public Question() {
 	}
@@ -21,14 +20,6 @@ public class Question implements Serializable {
 		this.points = points;
 	}
 
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
 	public List<Answer> getAnswers() {
 		return answers;
 	}
@@ -37,19 +28,4 @@ public class Question implements Serializable {
 		this.answers = answers;
 	}
 
-	public int getTime() {
-		return time;
-	}
-
-	public void setTime(int time) {
-		this.time = time;
-	}
-
-	public int getPoints() {
-		return points;
-	}
-
-	public void setPoints(int points) {
-		this.points = points;
-	}
 }
