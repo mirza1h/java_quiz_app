@@ -24,8 +24,19 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	function answerChecked(event) {
-		if (questions[currentQuestion].timeLeft > 0 && event.target.hasChildNodes()) {
-			event.target.children[0].checked = !event.target.children[0].checked;
+		if (questions[currentQuestion].timeLeft > 0) {
+			//clicked on answer div
+			if ( event.target.tagName == "DIV") {
+				event.target.children[0].checked = !event.target.children[0].checked;
+			}
+			//clicked on checkbox
+			else if (event.target.tagName == "INPUT"){
+				event.target.checked = !event.target.checked;
+			}
+			//label
+			else{
+				event.target.parentElement.children[0].checked = !event.target.parentElement.children[0].checked;
+			}
 		}
 	}
 
