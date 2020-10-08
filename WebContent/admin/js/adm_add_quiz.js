@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function getQuestionValues(question) {
         var currentQuestion = {};
         var infoInputs = question.children[1].getElementsByTagName("input");
+
         currentQuestion.text = infoInputs[0].value;
         currentQuestion.points = infoInputs[1].value;
         currentQuestion.time = infoInputs[2].value;

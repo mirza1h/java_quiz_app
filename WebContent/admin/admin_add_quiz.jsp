@@ -79,14 +79,13 @@
                             <label>Question text</label>
                             <input type="text" class="form-control " required>
                         </div>
-
+						<div class="form-group w-15 form-check-inline">
+                            <label>Points</label>
+                            <input id="points_input" type="number"  min="1" max="10" class="form-control" required>
+                        </div>
                         <div class="form-group w-15 form-check-inline"> 
                             <label>Time</label>
-                            <input type="number" max="30" min="5" class="form-control" required>
-                        </div>
-                        <div class="form-group w-15 form-check-inline">
-                            <label>Points</label>
-                            <input type="number"  min="1" max="10" class="form-control" required>
+                            <input id="time_input" type="number" max="30" min="5" class="form-control" required>
                         </div>
                     </div>
                     <div>

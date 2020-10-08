@@ -21,7 +21,7 @@ public class AuthFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 		HttpSession session = request.getSession(false);
-		String loginURI = request.getContextPath() + "/login";
+		String loginURI = request.getContextPath() + "/quiz/admin/login";
 
 		boolean loggedIn = session != null && session.getAttribute("user") != null;
 		boolean loginRequest = request.getRequestURI().equals(loginURI);

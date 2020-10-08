@@ -63,9 +63,9 @@
 					</div>
 				</div>
 				<h3><%=quiz.getTitle()%></h3>
-				<span><%=quiz.getDescription()%></span>
-				<div id="idPlayQuizBtn" class="begin-button right ">
-					<a class="btn black-text lighten-2">Begin</a>
+				<h5><%=quiz.getDescription()%></h5>
+				<div id="idPlayQuizBtn" class="begin-button left ">
+					<a class="btn btn-light">Begin</a>
 				</div>
 			</div>
 		</div>
