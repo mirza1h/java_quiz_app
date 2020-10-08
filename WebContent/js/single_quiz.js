@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	function answerChecked(event) {
-		if (questions[currentQuestion].timeLeft > 0) {
+		if (questions[currentQuestion].timeLeft > 0 && event.target.hasChildNodes()) {
 			event.target.children[0].checked = !event.target.children[0].checked;
 		}
 	}
@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			var answerDiv = questionAnswerDiv.cloneNode(true);
 			answerDiv.style.display = "block";
 			answerDiv.addEventListener("click", answerChecked);
+			answerDiv.children[0].checked = false;
 			answerDiv.children[1].innerText = question.answers[i].text;
 			answers.push(answerDiv.children[0]);
 			answersDiv.appendChild(answerDiv);
